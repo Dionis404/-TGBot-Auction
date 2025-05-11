@@ -1,0 +1,5 @@
+aiogram==3.*
+python-dotenv
+APScheduler
+pytz
+python-telegram-bot==20.0b1
