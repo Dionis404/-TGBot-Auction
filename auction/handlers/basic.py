@@ -14,7 +14,9 @@ class FeedbackForm(StatesGroup):
 # Команда /start
 @router.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("👋 Привет! Я бот, который будет напоминать о начале аукционов.")
+    await message.answer("👋 Привет! Я где-то тебя видел! \n"
+    "А точно! Ты пробегал мимо меня на плазе! \n"
+    )
 
 # Команда /help
 @router.message(Command("help"))
@@ -31,8 +33,9 @@ async def cmd_help(message: types.Message):
 @router.message(Command("info"))
 async def cmd_info(message: types.Message):
     await message.answer(
-        "ℹ️ Этот бот создан для демонстрации универсальной структуры.\n"
-        "В будущем он может быть расширен для выполнения конкретных задач."
+        "Привет! Тебе стало интересно чем я занимаюсь? \n"
+        "Я просто уведомляю Бампкинов об аукционах \n"
+        "Делаю я это только в этой группе https://t.me/URGSFL"
     )
 
 # Команда /feedback
@@ -40,7 +43,9 @@ async def cmd_info(message: types.Message):
 async def cmd_feedback(message: types.Message, state: FSMContext):
     # Переход в состояние ожидания отзыва
     await state.set_state(FeedbackForm.waiting_for_feedback)
-    await message.answer("✉️ Напишите сюда свой отзыв:")
+    await message.answer("✉️ У вас есть что сказать? \n"
+    "Буду рад передать Главному гоблину ваши пожелания."
+    )
 
 # Обработка отзыва
 @router.message(FeedbackForm.waiting_for_feedback)
@@ -53,5 +58,5 @@ async def process_feedback(message: types.Message, state: FSMContext):
             'user_id': message.from_user.id
         }
     )
-    await message.answer("✅ Спасибо! Твой отзыв сохранён.")
+    await message.answer("Я передам все слово в слово.")
     await state.reset_state()  # Завершаем состояние

@@ -12,7 +12,7 @@ async def main():
     dp.include_router(basic.router)
     dp.include_router(admin.router)
 
-    print("Бот запущен и ждёт сообщений...")
+    print("Бот запущен")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
